@@ -33,7 +33,7 @@ amazon-connect-customer-profiles is available from npmjs.com. If you'd like to d
 Run npm run release to generate new release files.
 
 ```
-$ git clone https://github.com/aws-connect/amazon-connect-customer-profiles
+$ git clone https://github.com/amazon-connect/amazon-connect-customer-profiles.git
 $ cd amazon-connect-customer-profiles
 $ npm install
 $ npm run release

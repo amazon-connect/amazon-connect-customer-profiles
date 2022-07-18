@@ -1,6 +1,6 @@
 {
   "name": "amazon-connect-customer-profiles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/amazon-connect-customer-profiles.js",
   "description": "Provides access to customerProfiles for connect customers.",
   "scripts": {
