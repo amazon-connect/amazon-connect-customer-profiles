@@ -1,0 +1,34 @@
+# Turns on auto-merge for Dependabot patch and minor updates.
+# GitHub merges the PR only after the required checks pass.
+# Prerequisites (repo settings):
+#   - Settings > General > "Allow auto-merge" is on.
+#   - main requires the "test (22)" and "test (24)" checks.
+#     Without a required check, GitHub merges as soon as auto-merge is on.
+# Major updates are never auto-merged; they need a human.
+name: Dependabot auto-merge
+
+on:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  automerge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'amazon-connect/amazon-connect-customer-profiles'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # enable auto-merge
+      pull-requests: write # approve the PR
+    steps:
+      - name: Read Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+
+      - name: Approve and enable auto-merge
+        if: steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --squash "$PR_URL"
