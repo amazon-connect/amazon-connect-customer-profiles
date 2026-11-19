@@ -49,10 +49,12 @@
     "babel-loader": "^8.2.5",
     "eslint": "^8.14.0",
     "eslint-plugin-jest": "^26.1.5",
+    "isomorphic-fetch": "3.0.0",
     "jest": "^27.5.1",
+    "regenerator-runtime": "^0.14.1",
+    "terser-webpack-plugin": "^5.6.1",
     "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "isomorphic-fetch": "3.0.0"
+    "webpack-cli": "^4.9.2"
   },
   "engines": {
     "node": ">14.0.0"
